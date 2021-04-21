@@ -9,24 +9,36 @@ using NLog;
 
 namespace DnDeck.Image
 {
-    public class ImageLoader
+    public class ImageLoader: IImageSource
     {
-        static readonly Dictionary<string, string> Images = new();
-        static readonly List<string> MissingImages = new();
+        readonly Dictionary<string, string> Images = new(StringComparer.InvariantCultureIgnoreCase);
+        readonly List<string> MissingImages = new();
 
         static readonly Uri WebHtmlPath = new("https://tentaculus.ru/monsters/index.html");
-        const string BackupHtmlPath = "Backup/Monsters.html";
+        const string BackupHtmlPath = "Data/Monsters.html";
 
         static readonly string BaseImageUrl = new Uri(WebHtmlPath, ".").OriginalString;
 
         static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
+        public string GetImage(string monsterName)
+        {
+            if (!Images.TryGetValue(monsterName, out var url))
+            {
+                Logger.Info($"No default image for '{monsterName}'");
+            }
+
+            return url;
+        }
+
         public void ParseWebImages()
         {
+            // Doesn't work, needs a proper js execution for it to load actual data first
+            // Saving the page locally and parsing it is faster for (since its a one-time thing)
             Logger.Info($"Parsing web images from '{WebHtmlPath.OriginalString}'");
             using WebClient client = new WebClient();
             string html = client.DownloadString(WebHtmlPath);
-            System.IO.File.WriteAllText("test.html", html);
+
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
@@ -84,7 +96,7 @@ namespace DnDeck.Image
                 string imageLocalPath = imageNode.GetDataAttribute("src").Value;
                 if (string.IsNullOrWhiteSpace(imageLocalPath) || !imageLocalPath.EndsWith(".jpg"))
                 {
-                    Logger.Warn($"Missing image: {monsterName}");
+                    Logger.Info($"Missing image: {monsterName}");
                     MissingImages.Add(monsterName);
                     continue;
                 }
@@ -93,7 +105,8 @@ namespace DnDeck.Image
 
                 if (Images.ContainsValue(imageUrl))
                 {
-                    Logger.Info($"Images list already contains url '{imageUrl}' for '{Images.FirstOrDefault(x => x.Value == imageUrl).Key}, duplicating it for '{monsterName}");
+                    Logger.Info(
+                        $"Images list already contains url '{imageUrl}' for '{Images.FirstOrDefault(x => x.Value == imageUrl).Key}, duplicating it for '{monsterName}");
                 }
 
                 Images.Add(monsterName, imageUrl);

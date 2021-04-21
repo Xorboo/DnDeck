@@ -1,14 +1,29 @@
-﻿using DnDeck.Image;
+﻿using System;
+using DnDeck.Cards;
+using DnDeck.Image;
+using DnDeck.Monsters;
+using NLog;
 
 namespace DnDeck
 {
     public class Runner
     {
+        static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
         public void DoWork()
         {
-            var imageLoader = new ImageLoader();
-            imageLoader.ParseLocalImages();
-            imageLoader.DownloadImages();
+            var images = new ImagesManager();
+            images.LoadImages();
+
+            var monsters = new MonstersManager(images);
+            monsters.LoadJson();
+
+            var cards = new CardsManager(monsters);
+            cards.LoadCards();
+            cards.SaveCards();
+
+            Logger.Info("Done! Press ANY key to quit...");
+            Console.ReadKey();
         }
     }
 }
