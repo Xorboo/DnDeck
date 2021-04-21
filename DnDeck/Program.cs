@@ -232,7 +232,7 @@ namespace DnDeck
 
         static void ParseJson()
         {
-            const string filePath = "monsters.json";
+            const string filePath = "Data/monsters.json";
             string data = File.ReadAllText(filePath);
 
             Monsters = JsonConvert.DeserializeObject<List<Monster>>(data);
