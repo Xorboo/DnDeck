@@ -98,6 +98,6 @@ namespace DnDeck.Cards
         }
 
         string CardsDistributionLog => $"small: {SmallCards.Count}, large: {LargeCards.Count}, huge: {HugeCards.Count}";
-        int TotalPages => SmallCards.Count / 4 + LargeCards.Count / 2 + HugeCards.Count;
+        int TotalPages => 2 * (SmallCards.Count / 4 + LargeCards.Count / 2 + HugeCards.Count);
     }
 }
