@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using DnDeck.Monsters;
 using Newtonsoft.Json;
 using NLog;
