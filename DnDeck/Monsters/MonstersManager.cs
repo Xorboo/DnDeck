@@ -83,6 +83,7 @@ namespace DnDeck.Monsters
 
             monster.Traits = ReadTraits(monster.Trait);
             monster.Actions = ReadTraits(monster.Action);
+            monster.Reactions = ReadTraits(monster.Reaction);
         }
 
         static string FixName(string name)

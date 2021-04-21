@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
 namespace DnDeck.Monsters
@@ -10,6 +11,7 @@ namespace DnDeck.Monsters
         public string Fiction { get; set; }
         public string Size { get; set; }
         public string Type { get; set; }
+        public string SimpleType => Regex.Replace(Type, @"\(.*\)", "").Trim();
         public string Source { get; set; }
         public string Alignment { get; set; }
         public string AC { get; set; }
@@ -27,8 +29,12 @@ namespace DnDeck.Monsters
 
         public JToken Trait { get; set; }
         public List<Trait> Traits { get; set; } = new List<Trait>();
+
         public JToken Action { get; set; }
         public List<Trait> Actions { get; set; } = new List<Trait>();
+
+        public JToken Reaction { get; set; }
+        public List<Trait> Reactions { get; set; } = new List<Trait>();
 
         // Legendary, Lair, Local
 

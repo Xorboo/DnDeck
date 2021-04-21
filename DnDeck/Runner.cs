@@ -22,8 +22,7 @@ namespace DnDeck
             cards.LoadCards();
             cards.SaveCards();
 
-            Logger.Info("Done! Press ANY key to quit...");
-            Console.ReadKey();
+            Logger.Info("Done!");
         }
     }
 }

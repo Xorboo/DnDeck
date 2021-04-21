@@ -85,6 +85,7 @@ namespace DnDeck.Cards
             FillCardPages(LargeCards, 2);
             FillCardPages(HugeCards, 1); // lol
             Logger.Info($"Filled with empty cards, {CardsDistributionLog}");
+            Logger.Info($"Total pages: {TotalPages}");
         }
 
         void FillCardPages(List<CardData> cards, int modulo)
@@ -97,5 +98,6 @@ namespace DnDeck.Cards
         }
 
         string CardsDistributionLog => $"small: {SmallCards.Count}, large: {LargeCards.Count}, huge: {HugeCards.Count}";
+        int TotalPages => SmallCards.Count / 4 + LargeCards.Count / 2 + HugeCards.Count;
     }
 }

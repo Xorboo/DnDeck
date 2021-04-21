@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using DnDeck.Monsters;
+using NLog;
 
 namespace DnDeck.Cards
 {
@@ -15,6 +16,32 @@ namespace DnDeck.Cards
 
         readonly Monster Monster;
 
+        static Dictionary<string, string> TypeIcons = new (StringComparer.InvariantCultureIgnoreCase)
+        {
+            {"гуманоид", "balaclava"},
+            {"аберрация", "tentacles-skull"},
+            {"монстр", "imp-laugh"},
+            {"дракон", "dragon-spiral"},
+            {"нежить", "shambling-zombie"},
+            {"элементаль", "fire-dash"},
+            {"зверь", "goose"},
+            {"конструкт", "vintage-robot"},
+            {"исчадие", "sharped-teeth-skull"},
+            {"растение", "carnivorous-plant"},
+            {"слизь", "dripping-goo"},
+            {"фея", "fairy"},
+            {"великан", "giant"},
+            {"небожитель", "atlas"},
+            {"демон", "lightning-mask"},
+            {"рой крошечных зверей", "fly"},
+
+        };
+
+        static readonly string DefaultIcon = "targeted";
+
+        static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
+
         public CardData(Monster monster)
         {
             if (monster == null)
@@ -25,7 +52,7 @@ namespace DnDeck.Cards
             Monster = monster;
 
             title = Monster.Name;
-            icon = "imp-laugh";
+            LoadIcon();
             background_image = Monster.Image;
 
             GenerateContents(Monster);
@@ -89,6 +116,15 @@ namespace DnDeck.Cards
             return ((int) largeHeight, (int) smallHeight);
         }
 
+        void LoadIcon()
+        {
+            if (!TypeIcons.TryGetValue(Monster.SimpleType, out icon))
+            {
+                Logger.Warn($"Couldn't find icon for monster '{Monster.SimpleType}', using '{DefaultIcon}' instead");
+                icon = DefaultIcon;
+            }
+        }
+
         void GenerateContents(Monster m)
         {
             AddText($"<small>{m.Size}, {m.Type}, {m.Alignment}</small>");
@@ -107,19 +143,17 @@ namespace DnDeck.Cards
             string challenge = @$"{m.CR} <em><span style=""color: gray"">({m.Exp} XP)</span></em>";
             AddProperty("Сложность", challenge);
 
-            if (m.Traits.Count > 0)
-            {
-                AddSection("Особенности");
-                foreach (var trait in m.Traits)
-                {
-                    AddDescription($"<em>{trait.Name}</em>", trait.ParsedText);
-                }
-            }
+            AddTraitsBlock(m.Traits, "Особенности");
+            AddTraitsBlock(m.Actions, "Действия");
+            AddTraitsBlock(m.Reactions, "Реакция");
+        }
 
-            if (m.Actions.Count > 0)
+        void AddTraitsBlock(List<Trait> traits, string header)
+        {
+            if (traits.Count > 0)
             {
-                AddSection("Действия");
-                foreach (var action in m.Actions)
+                AddSection(header);
+                foreach (var action in traits)
                 {
                     AddDescription($"<em>{action.Name}</em>", action.ParsedText);
                 }
