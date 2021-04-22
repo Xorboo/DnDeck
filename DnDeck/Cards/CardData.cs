@@ -1,18 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using DnDeck.Monsters;
 using NLog;
+using NLog.Fluent;
 
 namespace DnDeck.Cards
 {
     public class CardData
     {
+        public enum CardSize
+        {
+            Small,
+            Medium,
+            Large
+        };
+
         public string title;
         public string icon;
         public string color = "FireBrick";
         public List<string> contents = new List<string>();
         public string background_image;
+        public int title_size = 13;
 
         readonly Monster Monster;
 
@@ -34,13 +44,44 @@ namespace DnDeck.Cards
             {"небожитель", "atlas"},
             {"демон", "lightning-mask"},
             {"рой крошечных зверей", "fly"},
+        };
 
+        static Dictionary<CardSize, List<(int Size, int MaxLength)>> HeaderSizes = new()
+        {
+            {
+                CardSize.Small, new()
+                {
+                    (13, 37),
+                    (12, 41),
+                    (11, 46),
+                    (10, int.MaxValue),
+                }
+            }
         };
 
         static readonly string DefaultIcon = "targeted";
 
         static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
+        public void AdjustHeaderSize(CardSize size)
+        {
+            if (size != CardSize.Small)
+                return;
+
+            foreach (var sizeData in HeaderSizes[size])
+            {
+                if (title.Length <= sizeData.MaxLength)
+                {
+                    if (title_size != sizeData.Size)
+                    {
+                        Logger.Info($"Adjusting size to [{sizeData.Size}] for {Monster.Name}");
+                        title_size = sizeData.Size;
+                    }
+
+                    break;
+                }
+            }
+        }
 
         public CardData(Monster monster)
         {
@@ -114,6 +155,11 @@ namespace DnDeck.Cards
             }
 
             return ((int) largeHeight, (int) smallHeight);
+        }
+
+        public override string ToString()
+        {
+            return Monster == null ? "Empty" : $"{Monster}";
         }
 
         void LoadIcon()

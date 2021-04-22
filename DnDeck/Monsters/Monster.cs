@@ -7,6 +7,8 @@ namespace DnDeck.Monsters
     public class Monster
     {
         public string Name { get; set; }
+        public string EnName => Regex.Match(Name, @"\(([^А-Яа-я]*)\)").Groups[1].Value;
+
         public string Image { get; set; }
         public string Fiction { get; set; }
         public string Size { get; set; }

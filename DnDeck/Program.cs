@@ -17,8 +17,7 @@ namespace DnDeck
         static void Main(string[] args)
         {
             var config = new ConfigurationBuilder()
-                .SetBasePath(Directory
-                    .GetCurrentDirectory()) //From NuGet Package Microsoft.Extensions.Configuration.Json
+                .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 

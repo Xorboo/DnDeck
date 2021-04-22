@@ -1,7 +1,9 @@
-﻿namespace DnDeck.Image
+﻿using DnDeck.Monsters;
+
+namespace DnDeck.Image
 {
     public interface IImageSource
     {
-        string GetImage(string monsterName);
+        string GetImage(Monster monster);
     }
 }

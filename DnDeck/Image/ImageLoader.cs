@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using DnDeck.Monsters;
 using HtmlAgilityPack;
 using NLog;
 
@@ -21,11 +22,11 @@ namespace DnDeck.Image
 
         static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-        public string GetImage(string monsterName)
+        public string GetImage(Monster monster)
         {
-            if (!Images.TryGetValue(monsterName, out var url))
+            if (!Images.TryGetValue(monster.Name, out var url))
             {
-                Logger.Info($"No default image for '{monsterName}'");
+                Logger.Info($"No default image for '{monster.Name}'");
             }
 
             return url;

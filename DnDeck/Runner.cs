@@ -1,5 +1,4 @@
-﻿using System;
-using DnDeck.Cards;
+﻿using DnDeck.Cards;
 using DnDeck.Image;
 using DnDeck.Monsters;
 using NLog;
@@ -19,7 +18,7 @@ namespace DnDeck
             monsters.LoadJson();
 
             var cards = new CardsManager(monsters);
-            cards.LoadCards();
+            cards.LoadCards(filterByList: true);
             cards.SaveCards();
 
             Logger.Info("Done!");

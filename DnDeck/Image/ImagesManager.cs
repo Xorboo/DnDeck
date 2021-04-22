@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using DnDeck.Monsters;
 using NLog;
 
 namespace DnDeck.Image
@@ -21,9 +22,9 @@ namespace DnDeck.Image
             ImageLoader.ParseLocalImages();
         }
 
-        public string GetImage(string monsterName)
+        public string GetImage(Monster monster)
         {
-            string defaultName = ImageLoader.GetImage(monsterName);
+            string defaultName = ImageLoader.GetImage(monster);
             if (!string.IsNullOrWhiteSpace(defaultName))
             {
                 string path = $"{RemoteRoot}/{Path.GetFileName(defaultName)}";
@@ -33,11 +34,10 @@ namespace DnDeck.Image
                 }
             }
 
-            string enName = Regex.Match(monsterName, @"\(([^)]*)\)").Groups[1].Value
-                .Replace(' ', '_').Replace('/', '_');
+            string enName = monster.EnName.Replace(' ', '_').Replace('/', '_');
             if (!Images.TryGetValue(enName, out var url))
             {
-                Logger.Error($"Couldn't find image for '{monsterName}' (converted name: '{enName}')");
+                Logger.Error($"Couldn't find image for '{monster.Name}' (converted name: '{enName}')");
             }
 
             return url;

@@ -1,0 +1,200 @@
+Aarakocra
+Animated Armor
+Flying Sword
+Ankheg
+Azer
+Basilisk
+Needle Blight
+Twig Blight
+Vine Blight
+Bugbear
+Bugbear Chief
+Bulette
+Bullywug
+Carrion Crawler
+Centaur
+Cockatrice
+Crawling Claw
+Dretch
+Manes
+Lemure
+Displacer Beast
+Earth Elemental
+Drow
+Ettin
+Shrieker
+Violet Fungus
+Gargoyle
+Ghast
+Ghoul
+Hill Giant
+Githyanki Warrior
+Githzerai Monk
+Gnoll
+Gnoll Pack Lord
+Gnoll Fang of Yeenoghu
+Deep Gnome Svirfneblin
+Goblin
+Goblin Boss
+Gorgon
+Grell
+Grick
+Griffon
+Grimlock
+Hell Hound
+Helmed Horror
+Hippogriff
+Hobgoblin
+Hobgoblin Captain
+Homunculus
+Hook Horror
+Kenku
+Kobold
+Lamia
+Lizardfolk
+Magmin
+Manticore
+Dust Mephit
+Ice Mephit
+Magma Mephit
+Mud Mephit
+Smoke Mephit
+Steam Mephit
+Merfolk
+Merrow
+Monodrone
+Duodrone
+Tridrone
+Quadrone
+Pentadrone
+Myconid Sprout
+Myconid Adult
+Bone Naga Guardian
+Bone Naga Spirit
+Nightmare
+Nothic
+Ogre
+Half-Ogre (Ogrillon)
+Ochre Jelly
+Orc
+Orc War Chief
+Orc Eye of Gruumsh
+Orog
+Owlbear
+Pegasus
+Peryton
+Piercer
+Pixie
+Quaggoth
+Young Remorhaz
+Sahuagin
+Sahuagin Baron
+Fire Snake
+Satyr
+Skeleton
+Minotaur Skeleton
+Sprite
+Stirge
+Thri-kreen
+Troglodyte
+Troll
+Water Weird
+Xorn
+Yuan-Ti Pureblood
+Zombie
+Ogre Zombie
+Rug of Smothering
+Banshee
+Spectator
+Cambion
+Chuul
+Couatl
+Darkmantle
+Barlgura
+Quasit
+Shadow Demon
+Barbed Devil
+Bearded Devil
+Imp
+Spined Devil
+Doppelganger
+Dryad
+Duergar
+Air Elemental
+Fire Elemental
+Water Elemental
+Drow Elite Warrior
+Ettercap
+Faerie Dragon Blue
+Flameskull
+Flumph
+Gas Spore
+Ghost
+Gibbering Mouther
+Flesh Golem
+Green Hag
+Night Hag
+Sea Hag
+Harpy
+Intellect Devourer
+Jackalwere
+Kuo-toa
+Kuo-toa Whip
+Lizardfolk Shaman
+Werebear
+Wereboar
+Wererat
+Weretiger
+Werewolf
+Mimic
+Mummy
+Myconid Sovereign
+Black Pudding
+Gelatinous Cube
+Gray Ooze
+Otyugh
+Pseudodragon
+Revenant
+Roper
+Rust Monster
+Sahuagin Priestess
+Salamander
+Scarecrow
+Shadow
+Shambling Mound
+Red Slaad
+Specter
+Succubus/Incubus
+Umber Hulk
+Vampire Spawn
+Wight
+Will-o'-Wisp
+Wraith
+Yeti
+Yuan-ti Malison Type 1
+Yuan-ti Malison Type 2
+Yuan-ti Malison Type 3
+Beholder
+Aboleth
+Behir
+Death tyrant
+Medusa
+Quaggoth Spore Servant
+Warhorse Skeleton
+Androsphinx
+Gynosphinx
+Unicorn
+Vampire
+Beholder Zombie
+Wolf
+Mage
+Spider
+Giant Spider
+Efreeti
+Balor
+Kraken
+Rat
+Giant Rat
+Bandit
+Cultist
+Mind Flayer

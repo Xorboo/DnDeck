@@ -79,7 +79,7 @@ namespace DnDeck.Monsters
             monster.Exp = Parameters.Exp[monster.CR];
             monster.CrValue = Parameters.CrValues[monster.CR];
 
-            monster.Image = Images.GetImage(monster.Name);
+            monster.Image = Images.GetImage(monster);
 
             monster.Traits = ReadTraits(monster.Trait);
             monster.Actions = ReadTraits(monster.Action);
